@@ -88,7 +88,7 @@ $app->get('/{name}', function ($request, $response, $args) use ($cache, $fractal
     $collection = array_shift($collection);
 
     if (!$cache->has($photosCacheName)) {
-        if ($cache->has($collectionCacheName)) {
+        if (!$cache->has($collectionCacheName)) {
             $collection = Crew\Unsplash\Collection::find($collection['id']);
             $cache->set($collectionCacheName, $collection);
         }
