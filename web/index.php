@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Cache\Simple\FilesystemCache;
 use League\Fractal\Manager;
@@ -8,7 +8,7 @@ use League\Fractal\Resource\Collection;
 use Slim\Http\Request;
 use Slim\Exception\NotFoundException;
 
-(new Dotenv\Dotenv(__DIR__))->load();
+(new Dotenv\Dotenv(__DIR__ . '/..'))->load();
 
 Crew\Unsplash\HttpClient::init([
     'applicationId' => getenv('UNSPLASH_APP_ID'),
