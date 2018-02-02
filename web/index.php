@@ -49,18 +49,6 @@ $app = new Slim\App();
 $app->get('/', function (Request $request, $response, $args) use ($collections, $cache, $fractal) {
     $router = $this->get('router');
 
-    $uri = $request->getUri();
-    $scheme = $uri->getScheme();
-    $authority = $uri->getAuthority();
-    $basePath = $uri->getBasePath();
-    $path = $uri->getPath();
-
-    $path = $basePath . '/' . ltrim($path, '/');
-
-    $baseUrl = ($scheme ? $scheme . ':' : '')
-        . ($authority ? '//' . $authority : '')
-        . $path;
-
     $resource = new Collection($collections, function ($endpoint) use ($cache, $router, $baseUrl) {
         $cacheName = "app.collection-{$endpoint['name']}";
 
@@ -78,7 +66,7 @@ $app->get('/', function (Request $request, $response, $args) use ($collections, 
 
         return [
             'name' => $endpoint['name'],
-            'uri' => $baseUrl . ltrim($path, '/')
+            'uri' => $path
         ];
     });
 
