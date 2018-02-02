@@ -8,7 +8,8 @@ use League\Fractal\Resource\Collection;
 use Slim\Http\Request;
 use Slim\Exception\NotFoundException;
 
-(new Dotenv\Dotenv(__DIR__ . '/..'))->load();
+
+is_file(__DIR__ . '/../.env') && (new Dotenv\Dotenv(__DIR__ . '/..'))->load();
 
 Crew\Unsplash\HttpClient::init([
     'applicationId' => getenv('UNSPLASH_APP_ID'),
